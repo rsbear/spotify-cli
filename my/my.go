@@ -30,10 +30,7 @@ func PlayList(search string, username string) string {
 	result := gjson.Get(body, filter)
 	fmt.Println(result)
 
-	// playThis := fmt.Sprintf("%s%s%v%s%s%s", "play track ", "\\", `"`, result, "\\", `"`)
-	// playYes := fmt.Sprintf("%s%v%s", `"play track \"`, result, `\""`)
-	// playYes := fmt.Sprintf("%v%s %s%v%s", `"`, `play track`, `\"`, result, `\""`)
-	playYes := fmt.Sprintf("play track %s", result)
+	playYes := fmt.Sprintf(`"play track \"%v\""`, result)
 	fmt.Println(playYes)
 
 	yes, err := mack.Tell("Spotify", playYes)
