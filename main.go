@@ -8,6 +8,7 @@ import (
 	// "strings"
 
 	"github.com/andybrewer/mack"
+	"github.com/fatih/color"
 	"github.com/joho/godotenv"
 	"github.com/rsbear/spotify/auth"
 	"github.com/rsbear/spotify/my"
@@ -196,9 +197,10 @@ func main() {
 					}
 
 					if artist != "" && album != "" && track != "" {
-						fmt.Println("Artist.. ", artist)
-						fmt.Println("Album... ", album)
-						fmt.Println("Song.... ", track)
+						fmt.Println("")
+						fmt.Println("Song.... ", color.CyanString(track))
+						fmt.Println("Artist.. ", color.CyanString(artist))
+						fmt.Println("Album... ", color.CyanString(album))
 					}
 
 					return nil

@@ -12,7 +12,7 @@ import (
 
 func PlayList(username string, search ...string) string {
 	name := strings.Join(search[:], " ")
-	fmt.Println(fmt.Sprintf("%s%v", "Searching my playlists for ", name))
+	fmt.Println(fmt.Sprintf("Searching my playlists for %v", name))
 	token := auth.Authorize()
 	authcode := fmt.Sprintf("Bearer %s", token)
 
