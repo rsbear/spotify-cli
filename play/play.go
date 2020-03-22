@@ -10,14 +10,6 @@ import (
 	"github.com/tidwall/gjson"
 )
 
-type Play struct {
-	uri string
-}
-
-type Obj struct {
-	uri string
-}
-
 func PlayNow(searchType string, search ...string) string {
 	name := strings.Join(search[:], " ")
 	fmt.Println(fmt.Sprintf("Searching for %v%s%v", searchType, "... ", name))
