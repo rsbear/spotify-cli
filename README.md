@@ -22,7 +22,7 @@ then run
 ``go install``
 
 
-#### Ball hard my friends
+#### Ball hard my friends (it's case sensitive for now)
 ```
 spotify help
 spotify play artist <artist name>
