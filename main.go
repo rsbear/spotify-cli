@@ -5,6 +5,8 @@ import (
 	"log"
 	"os"
 
+	// "strings"
+
 	"github.com/andybrewer/mack"
 	"github.com/joho/godotenv"
 	"github.com/rsbear/spotify/auth"
@@ -37,20 +39,24 @@ func main() {
 				Usage:   "options for task templates",
 				Subcommands: []*cli.Command{
 					{
-						Name:  "artist",
-						Usage: "play music by artist",
+						Name:  "album",
+						Usage: "play music by album",
 						Action: func(c *cli.Context) error {
-							fmt.Println("searching for artist: ", c.Args().First())
-							search := c.Args().First()
-							play.PlayNow(search, "artist")
+							// search := strings.Split()
+							search := c.Args().Slice()
+							// fmt.Println(search)
+							play.PlayNow("album", search...)
 							return nil
 						},
 					},
 					{
-						Name:  "track",
-						Usage: "play by track",
+						Name:  "artist",
+						Usage: "play music by artist",
 						Action: func(c *cli.Context) error {
-							fmt.Println("searching for track: ", c.Args().First())
+							// search := strings.Split()
+							search := c.Args().Slice()
+							// fmt.Println(search)
+							play.PlayNow("artist", search...)
 							return nil
 						},
 					},
@@ -58,9 +64,17 @@ func main() {
 						Name:  "playlist",
 						Usage: "play by playlist",
 						Action: func(c *cli.Context) error {
-							fmt.Println("searching for playlist: ", c.Args().First())
-							search := c.Args().First()
-							play.PlayNow(search, "playlist")
+							search := c.Args().Slice()
+							play.PlayNow("playlist", search...)
+							return nil
+						},
+					},
+					{
+						Name:  "song",
+						Usage: "play by song",
+						Action: func(c *cli.Context) error {
+							search := c.Args().Slice()
+							play.PlayNow("track", search...)
 							return nil
 						},
 					},
@@ -68,9 +82,8 @@ func main() {
 						Name:  "my",
 						Usage: "My playlists",
 						Action: func(c *cli.Context) error {
-							fmt.Println("Searching my playlists..")
-							search := c.Args().First()
-							my.PlayList(search, username)
+							search := c.Args().Slice()
+							my.PlayList(username, search...)
 							return nil
 						},
 					},

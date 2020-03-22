@@ -2,6 +2,7 @@ package my
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/andybrewer/mack"
 	"github.com/parnurzeal/gorequest"
@@ -9,7 +10,9 @@ import (
 	"github.com/tidwall/gjson"
 )
 
-func PlayList(search string, username string) string {
+func PlayList(username string, search ...string) string {
+	name := strings.Join(search[:], " ")
+	fmt.Println(fmt.Sprintf("%s%v", "Searching my playlists for ", name))
 	token := auth.Authorize()
 	authcode := fmt.Sprintf("Bearer %s", token)
 
@@ -26,19 +29,12 @@ func PlayList(search string, username string) string {
 		fmt.Println(errs)
 	}
 
-	filter := fmt.Sprintf("%s%v%s", "items.#(name=", search, ").uri")
+	filter := fmt.Sprintf("%s%v%s", "items.#(name=", name, ").uri")
 	result := gjson.Get(body, filter)
-	fmt.Println(result)
 
-	playYes := fmt.Sprintf("play track %s%s%s", "\\", result, "\\")
-	fmt.Println(playYes)
+	stringResult := fmt.Sprintf("play track \"%v%v", result, "\"")
 
-	yes, err := mack.Tell("Spotify", playYes)
-	// yes, err := mack.Tell("Spotify", "play track \"spotify:playlist:5r0SyLIoCOh4TS3lFE6bdN\"")
-	if err != nil {
-		fmt.Println(err)
-	}
-	fmt.Println(yes)
+	mack.Tell("Spotify", stringResult)
 
 	return "play"
 }
