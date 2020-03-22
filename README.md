@@ -2,10 +2,12 @@
 
 Manage Spotify playback through the command line written in Go
 
-#### Create a Spotify developer app
+### Create a Spotify developer app
 go to [spotifys developer site](https://developer.spotify.com/dashboard/)
 create an a desktop app
 
+### Clone the repo
+``git clone https://github.com/rsbear/spotify-cli.git``
 plop your client_id, client_secret, and username in a .env like so
 
 ```
@@ -14,19 +16,13 @@ CLIENT_SECRET=lafjklsldkj
 USERNAME=goslittleoperator
 ```
 
-#### Clone the repo
-``git clone https://github.com/rsbear/spotify-cli.git``
-
 cd into it
 then run 
 
 ``go install``
 
 
-#### Money
-
-
-
+#### Ball hard my friends
 ```
 spotify help
 spotify play artist <artist name>
